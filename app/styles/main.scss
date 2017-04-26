@@ -1,0 +1,412 @@
+// bower:scss
+// endbower
+
+body {
+  padding: 0;
+  width:100%;
+  height: 100%;
+  background-color: #F0F0F0;
+}
+
+.login {
+  background-image: url('../images/background2-v3-blur.jpg');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fa-input {
+  font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.padding-5 {
+  padding: 5%;
+}
+
+.search {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.view {
+  margin: 7% 4% 0 10%;
+}
+
+/* Login page */
+.loader {
+  position: absolute;
+  margin-left: 35%;
+  z-index: 999;
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#loginForm {
+  width: 40%;
+  margin: 10% auto;
+  background-color: #fff;
+  border: solid 1px #000;
+
+  button {
+    padding: 5px 10px;
+    border-radius: 0;
+  }
+
+  form {
+    padding: 7%
+  }
+  .error {
+    color: red;
+  }
+}
+
+/* Nav bar */
+nav {
+  background-color: #fff;
+
+  li a {
+    cursor: pointer;
+  }
+
+  .navbar-nav li.active a {
+    font-weight: bold;
+    background-color: #fff;
+    border-top: 2px solid #337a90;
+  }
+
+  .navbar-nav li a {
+    font-size: 18px;
+    color: #337a90;
+
+    &:hover {
+      font-weight: bold;
+      background-color: #fff;
+    }
+  }
+
+  .navbar-right {
+    li a {
+      &:hover {
+        font-weight: normal;
+        background-color: #fff;
+        border-top: 2px solid #337a90;
+      }
+    }
+
+    .dropdown-menu li a:hover {
+      font-weight: bolder;
+      color: #337a90;
+      background-color: #fff;
+      border-top: none;
+      border-bottom: 2px solid #337a90;
+    }
+  }
+
+  .navbar-header {
+    width: 18%;
+
+    a {
+      font-size: 130%;
+    }
+  }
+
+  .toggle-btn {
+    display: none;
+  }
+}
+
+/* Side bar */
+.nav-side-menu {
+  overflow: auto;
+  font-size: 17px;
+  font-weight: 100;
+  background-color: #337a90;
+  position: fixed;
+  top: 0px;
+  width: 16%;
+  height: 100%;
+  color: #777;
+  margin-top: 3.8%;
+  border: solid 1px #337a90;
+
+  .brand {
+    background-color: #fff;
+    line-height: 180px;
+    display: block;
+    text-align: center;
+  }
+
+  ul, li {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    line-height: 40px;
+    cursor: pointer;
+    border-bottom: 1px solid #fff;
+
+    a {
+      text-decoration: none;
+      padding: 7%;
+      color: #fff;
+    }
+  }
+
+  li:hover {
+    background-color: #fff;
+    border: solid 1px #337a90;
+
+      a {
+      color: #337a90;
+    }
+  }
+
+  li.active {
+    background-color: #fff;
+    border: solid 1px #337a90;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    a {
+      color: #337a90;
+    }
+  }
+}
+
+@media screen and (max-width: 1089px) {
+
+  nav {
+    .toggle-btn {
+      display: block;
+      float: left;
+      padding: 1%;
+      color: #337a90;
+      z-index: 10 !important;
+    }
+  }
+
+    /* Side bar */
+  .nav-side-menu {
+    transition: all linear 0.1s;
+    overflow: auto;
+    font-weight: 100;
+    background-color: #337a90;
+    position: fixed;
+    top: 0px;
+    width: 6%;
+    height: 100%;
+    color: #777;
+    margin-top: 3.8%;
+    border: solid 1px #337a90;
+
+    .brand {
+      text-align: left !important;
+      padding-left: 20px;
+      line-height: 90px !important;
+    }
+
+    ul, li {
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+      line-height: 40px;
+      cursor: pointer;
+      border-bottom: 1px solid #fff;
+
+      a {
+        text-decoration: none;
+        padding: 7%;
+        color: #fff;
+
+        span {
+          display: none
+        }
+
+        i {
+          font-size: 22px;
+          padding-left: 20%;
+        }
+      }
+    }
+  }
+
+  .updateSideBar {
+    transition: all linear 0.3s;
+    background-color: red;
+    overflow: auto;
+    font-size: 17px;
+    font-weight: 100;
+    background-color: #337a90;
+    position: fixed;
+    top: 0px;
+    width: 18%;
+    height: 100%;
+    color: #777;
+    margin-top: 3.8%;
+    border: solid 1px #337a90;
+
+    .brand {
+      text-align: left !important;
+      padding-left: 20px;
+      line-height: 180px !important;
+    }
+
+    ul, li {
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+      line-height: 40px;
+      cursor: pointer;
+      border-bottom: 1px solid #fff;
+
+      a {
+        text-decoration: none;
+        padding: 7%;
+        color: #fff;
+
+        span {
+          display: inline
+        }
+
+        i {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+/* view */
+.manage-btn {
+  float: right;
+  border-radius: 0px;
+  margin-bottom: 4%;
+}
+
+.loginForm {
+  opacity: 0.9;
+}
+
+.menu_view {
+  margin: 0 4% 0 13%;
+  height: 90%;
+  padding: 1%;
+  background-color: #FFF;
+
+  h2 {
+    margin-right: 0px;
+  }
+}
+
+.view_deposited_item {
+  table tr {
+    td, th {
+      text-align: right;
+      font-size: 15px;
+    }
+  }
+
+  #depositTabContent {
+    margin-top: -2%;
+  }
+
+  .total {
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .btn:hover {
+    background-color: #337ab7;
+    color: white;
+  }
+}
+
+.btn {
+  border-radius: 0px;
+  font-size: 15px;
+}
+
+.icons {
+  font-size: 24px;
+}
+
+.right {
+  text-align: right;
+}
+
+.manage_material, .manage_user, .manage_item, .manage_customer {
+  padding-top: 5%;
+  margin-top: 7%;
+}
+
+.profile {
+  padding-top: 5%;
+  margin-top: 5%;
+}
+
+.manage_expenditure {
+  padding-top: 5%;
+  margin-top: 4%;
+}
+
+.tab-pane {
+  margin-top: 5%;
+}
+
+#payment {
+  form {
+    padding-left: 10%;
+  }
+}
+
+form {
+  legend.submitted {
+    color: red;
+  }
+
+  .submitted.ng-invalid {
+    border-color: red;
+  }
+}
+
+.delete {
+  float: right;
+  cursor:pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.table tbody tr{
+  cusor: pointer
+}
+
+.error {
+  color:red
+}
+
+.sample-show-hide {
+  transition: all linear 0.8s;
+}
+.sample-show-hide.ng-hide {
+  opacity: 0;
+}
+
+/* footer */
+.footer {
+  position: relative;
+  padding-top: 19px;
+  color: #777;
+  margin-left: 16%;
+  border-top: 1px solid #e5e5e5;
+}

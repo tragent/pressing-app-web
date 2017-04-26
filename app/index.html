@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/c3/c3.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="pressingUiApp" ng-class="{ login: isActive('/login')}">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div>
+      <div class="header" style="width: 100%">
+        <div ng-include="'/views/shared/navbar.html'" ng-if="location.path() !== '/login'"></div>
+      </div>
+
+      <div class="body">
+        <div ng-include="'/views/shared/sidebar.html'" ng-if="location.path() !== '/login'"></div>
+        <div style="" class="view" ui-view=""></div>
+      </div>
+    </div>
+    <div class="container-fluid" ng-class="{ blur: isActive('/login')}"></div>
+
+   <!-- <div class="footer">
+      <div class="container">
+        <p class="text-center"><a><strong>Powered by Skylabase.</strong></a></p>
+      </div>
+    </div>-->
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/c3/c3.js"></script>
+    <script src="bower_components/c3-angular/c3-angular.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/models/role.js"></script>
+        <script src="scripts/directives/hasRole.js"></script>
+        <script src="scripts/services/authenticationService.js"></script>
+        <script src="scripts/services/itemService.js"></script>
+        <script src="scripts/services/customerService.js"></script>
+        <script src="scripts/services/transactionService.js"></script>
+        <script src="scripts/services/categoryService.js"></script>
+        <script src="scripts/services/cleaningMaterialService.js"></script>
+        <script src="scripts/services/paymentMethodService.js"></script>
+        <script src="scripts/services/expenditureService.js"></script>
+        <script src="scripts/services/userService.js"></script>
+        <script src="scripts/services/roleService.js"></script>
+        <script src="scripts/services/permissionService.js"></script>
+        <script src="scripts/controllers/main/loginController.js"></script>
+        <script src="scripts/controllers/main/dashboardController.js"></script>
+        <script src="scripts/controllers/item/itemController.js"></script>
+        <script src="scripts/controllers/item/manageItemController.js"></script>
+        <script src="scripts/controllers/user/userController.js"></script>
+        <script src="scripts/controllers/user/manageUserController.js"></script>
+        <script src="scripts/controllers/role/roleController.js"></script>
+        <script src="scripts/controllers/role/manageRoleController.js"></script>
+        <script src="scripts/controllers/permission/permissionController.js"></script>
+        <script src="scripts/controllers/permission/managePermissionController.js"></script>
+        <script src="scripts/controllers/customer/customerController.js"></script>
+        <script src="scripts/controllers/customer/manageCustomerController.js"></script>
+        <script src="scripts/controllers/cleaningMaterial/cleaningMaterialController.js"></script>
+        <script src="scripts/controllers/cleaningMaterial/expenditureController.js"></script>
+        <script src="scripts/controllers/cleaningMaterial/manageExpenditureController.js"></script>
+        <script src="scripts/controllers/cleaningMaterial/manageCleaningMaterialController.js"></script>
+        <script src="scripts/controllers/depositedItem/depositedItemController.js"></script>
+        <script src="scripts/controllers/depositedItem/manageDepositedItemController.js"></script>
+        <script src="scripts/controllers/depositedItem/viewDepositedItemController.js"></script>
+        <script src="scripts/controllers/main/notificationController.js"></script>
+        <script src="scripts/controllers/main/profileController.js"></script>
+        <script src="scripts/controllers/main/navbarController.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

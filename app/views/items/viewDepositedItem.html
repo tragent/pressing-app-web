@@ -1,0 +1,130 @@
+<div class="container view_deposited_item">
+<div class="menu_view">
+	<div class="row">
+		<ul id="depositTab" class="nav nav-tabs col-md-10 col-md-offset-1">
+			<li class="active">
+				<a data-target="#depositeItem" data-toggle="tab">Deposit Item</a>
+			</li>
+			<li>
+				<a data-target="#payments" data-toggle="tab">Payments</a>
+			</li>
+			<li class="navbar-right">
+				<a ng-click="updateTransacttion(transaction.id)" class="btn btn-primary btn-lg"  data-toggle="tab">Update Transaction</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="row">
+		<div id="depositTabContent" class="tab-content">
+			<div class="tab-pane fade in active" id="depositeItem">
+				<div class="row">
+					<div class="table-responsive col-md-10 col-md-offset-1 box">
+						<table class="table table-bordered">
+						  <thead>
+						    <tr>
+						    	<th class="col-md-3">Label</th>
+						      <th class="col-md-8">Value</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<tr>
+						      <td>Item's name</td>
+						      <td ng-bind="transaction.item.name"></td>
+						    </tr>
+						    <tr>
+						      <td>Customer's name</td>
+						      <td ng-bind="(transaction.customer.firstName) + ' ' + (transaction.customer.lastName)"></td>
+						    </tr>
+						    <tr>
+						      <td>Material</td>
+						      <td ng-bind="transaction.item.category.name"></td>
+						    </tr>
+						    <tr>
+						      <td>Cost</td>
+						      <td ng-bind="transaction.item.cost"></td>
+						    </tr>
+						    <tr>
+						      <td>Quantity of Item</td>
+						      <td ng-bind="transaction.quantity"></td>
+						    </tr>
+						    <tr>
+						      <td>Telephone</td>
+						      <td ng-bind="transaction.customer.telephone"></td>
+						    </tr>
+						    <tr>
+						      <td>Email</td>
+						      <td ng-bind="transaction.customer.email"></td>
+						    </tr>
+						    <tr>
+						      <td>Status</td>
+						      <td ng-bind="transaction.status"></td>
+						    </tr>
+						    <tr>
+						      <td>Label</td>
+						      <td ng-bind="transaction.label"></td>
+						    </tr>
+						    <tr>
+						      <td>Deposite Date</td>
+						      <td>{{ transactionDepositDate | date : "EEEE, dd MMMM y" }}</td>
+						    </tr>
+						    <tr>
+						      <td>Due Date</td>
+						      <td>{{ transactionDueDate | date : "EEEE, dd MMMM y" }}</td>
+						    </tr>
+						  </tbody>
+					  </table>
+				  </div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="payments">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<ul id="paymentTab" class="nav nav-tabs">
+							<li ng-class="{ active: isActive({{$index + 1}})}" ng-repeat="payment in transaction.payments">
+								<a data-target="#payment{{$index + 1}}" data-toggle="tab">Payment - {{$index + 1}}</a>
+							</li>
+						</ul>
+					</div>
+					<div class="row">
+						<div id="paymentTabContent" class="tab-content" >
+							<div ng-class="{ active: isActive({{$index + 1}})}" class="tab-pane fade in" id="payment{{$index + 1}}" ng-repeat="payment in transaction.payments track by $index">
+								<div class="table-responsive col-md-10 col-md-offset-1 box">
+									<table class="table table-bordered">
+									  <thead>
+									    <tr>
+									    	<th class="col-md-3">Label</th>
+									      <th class="col-md-8">Value</th>
+									    </tr>
+									  </thead>
+									  <tbody>
+									  	<tr>
+									      <td>Payment Method {{$index + 1}}</td>
+									      <td ng-bind="transaction.payments[{{$index}}].
+									      customerItem.payments[{{$index}}].paymentMethod.name"></td>
+									    </tr>
+									    <tr>
+									      <td>Amount</td>
+									      <td ng-bind="transaction.payments[{{$index}}].amount"></td>
+									    </tr>
+									    <tr>
+									      <td>Date</td>
+									      <td>{{ paymentDates[$index] | date : "EEEE, dd MMMM y" }}</td>
+									    </tr>
+									  </tbody>
+								  </table>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 col-md-offset-8">
+							<div><span class="total">Total paid:</span><span class="padding-5" ng-bind="amountPaid"></span></div>
+							<div><span class="total">Total pending:</span><span class="padding-5" ng-bind="amountPending"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

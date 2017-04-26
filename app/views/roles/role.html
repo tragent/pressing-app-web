@@ -1,0 +1,54 @@
+<div class="contianer menu_view">
+	<h2 class="row">
+		<a class="btn btn-primary btn-lg manage-btn" ui-sref="manageRole">Add Role</a>
+	</h2>
+	<!-- success message -->
+	<div ng-show="successMessage" class="sample-show-hide alert alert-success">
+		<p class="alert-link">Role has been created / update.</p>
+	</div>
+
+	<!-- Search bar -->
+	<div class="row">
+	  <form name="searchForm" >
+	    <div class="form-group col-sm-7 col-sm-offset-2">
+	      <div class="input-group col-md-12">
+	        <input type="text" class="form-control input-lg" placeholder="Find role by name"
+	        	ng-model="search" />
+	        <span class="input-group-btn">
+	          <button style="border-radius: 2px; padding: 12px" class="btn btn-info btn-lg" type="submit">
+	            <i class="glyphicon glyphicon-search"></i>
+	          </button>
+	        </span>
+	      </div>
+	    </div>
+	  </form>
+	</div>
+	<!-- Table of roles -->
+	<div class="row">
+		<div class="table-responsive col-md-12 box">
+			<table class="table table-hover">
+			  <thead>
+			    <tr>
+			     	<th class="text-center">No</th>
+			      <th class="text-center">role</th>
+			      <th class="text-center">Description</th>
+			    </tr>
+			  </thead>
+			  <tbody class="text-center">
+			  	<tr dir-paginate="role in roles|filter:search|itemsPerPage:5" ng-click="viewRole(role.id)">
+					  <td>{{$index + 1}}</td>
+					  <td ng-bind="pretty(role.name)" ></td>
+					  <td ng-bind="role.description"></td>
+					</tr>
+			  </tbody>
+		  </table>
+	  </div>
+	  <div class="text-center">
+		  <!-- Pagination controls -->
+      <dir-pagination-controls
+         max-size="5"
+         direction-links="true"
+         boundary-links="true" >
+      </dir-pagination-controls>
+  </div>
+</div>

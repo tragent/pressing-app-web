@@ -1,0 +1,64 @@
+<div class="container">
+	<div class="menu_view manage_user">
+		<form class="form-horizontal" role="form" ng-submit="createUser()" name="manageUserForm" novalidate>
+			<div class="form-group">
+				<label for="first_name" class="col-sm-2 control-label">First Name</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="first_name" ng-class="{ submitted: submitCreateUserForm}" class="form-control" ng-model="user.firstName" required>
+				</div>
+				<label for="username" class="col-sm-2 control-label">Username</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="username" ng-class="{ submitted: submitCreateUserForm}" class="form-control" ng-model="user.username" required ng-disabled="update">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="last_name" class="col-sm-2 control-label">Last Name</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="last_name" ng-class="{ submitted: submitCreateUserForm}" class="form-control" ng-model="user.lastName" required>
+				</div>
+				<label for="password" class="col-sm-2 control-label">Password</label>
+				<div class="col-sm-3">
+					<input type="password" minlength="8" class="form-control" id="password" ng-class="{ submitted: submitCreateUserForm}" class="form-control" ng-model="user.password" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="telephone" class="col-sm-2 control-label">Telephone</label>
+				<div class="col-sm-3">
+					<input type="tel" maxlength="9" class="form-control" id="telephone" ng-class="{ submitted: submitCreateUserForm}" class="form-control" ng-model="user.telephone" required>
+				</div>
+				<label for="is_active" class="col-sm-2 control-label">Is active</label>
+				<div class="col-sm-1" class="checkbox">
+					<input style="height: 20px" type="checkbox" class="form-control" id="is_active" ng-class="{ submitted: submitCreateUserForm}" class="form-control" ng-model="user.active" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="newRole" class="col-sm-2 col-sm-offset-1 control-label">Add role</label>
+				<div class="col-sm-5">
+					<select class="form-control" ng-model="newRole" ng-options="pretty(role.name) for role in roles" required>
+					</select>
+				</div>
+				<input class="btn btn-primary fa-input" type="button" value="&#xf067; " ng-click="addRole(newRole)">
+			</div>
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-1">
+					<legend ng-class="{ submitted: (submitCreateUserForm) && (!roleSet)}">Roles</legend>
+					<ul>
+						<ol ng-repeat="role in userRole">
+							<div class="row" style="margin-bottom: 20px">
+								<span class="col-sm-1">{{ $index + 1 }}.</span>
+								<span class="col-sm-8" ng-bind="pretty(role.name)"></span>
+								<span class="delete" ng-click="removeRole(role)">x</span>
+							</div>
+						</ol>
+					</ul>
+				</div>
+			</div>
+			<div style="position: relative; margin-left: 50%;">
+				<button ng-show="!update" style=" margin: 2%" class="btn btn-danger" type="reset">Cancel</button>
+				<button ng-show="update" style=" margin: 2%" class="btn btn-danger" ng-click="back()">Back</button>
+				<button ng-show="!update" class="btn btn-primary" type="submit">Submit</button>
+				<input ng-show="update" class="btn btn-primary" type="button" ng-click="updateUser()" value="update" />
+			</div>
+		</form>
+	</div>
+</div>

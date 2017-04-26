@@ -1,0 +1,29 @@
+<nav ng-controller='NavCtrl' class="navbar navbar-fixed-top">
+  <div class="container-fluid">
+    <i ng-click="toggleSideBar()" class="fa fa-bars fa-2x toggle-btn"></i>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Pressing Managment</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li has-role='ROLE_ADMINISTRATION' ><a ui-sref="user">Administration</a></li>
+      <li><a ui-sref="dashboard">Management</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a ui-sref="notification">
+        <i style="margin-top: 5%;" class="fa fa-bell icons" aria-hidden="true">
+          <span class="badge">{{ notification }}</span>
+        </i>
+      </a></li>
+      <li class="dropdown" style="margin-left: ">
+        <a class="dropdown-toggle" data-toggle="dropdown">
+          <span ng-bind="loggedInUser.username"></span>
+          <i class="fa fa-decrease icons" aria-hidden="true"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a ui-sref="profile"><i class="fa fa-user icons" aria-hidden="true"></i> Profile</a></li>
+          <li ng-click="logout()"><a><i class="fa fa-sign-out icons" aria-hidden="true"></i>Log out</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

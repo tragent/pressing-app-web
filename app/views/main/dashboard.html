@@ -1,0 +1,77 @@
+<div class="contianer menu_view dashboard">
+	<div class="row header">
+		<h2 Style="margin-left:0px" class="col-sm-5 col-sm-offset-2">
+			<span>{{ currentDate | date : "EEEE, dd MMMM y" }}</span>
+		</h2>
+		<div class="col-sm-5 col-sm-offset-2" >
+			<c3chart bindto-id="pie-plot1-chart">
+			  <chart-column column-id="Data 1"
+			  						column-name="Clean items"
+			  						column-color="#1F75FE"
+			              column-values="{{ readyItems }}"
+			              column-type="pie"/>
+			  <chart-column column-id="Data 2"
+			  						column-name="Dirty items"
+			  						column-color="#ED1C24"
+			              column-values="{{ unreadyItems }}"
+			              column-type="pie"/>
+			  <chart-pie expand="true"/>
+			  <chart-size chart-width="220" chart-height="220"/>
+			</c3chart>
+		</div>
+	</div>
+
+	<!-- Search bar -->
+	<div class="row">
+	  <form name="searchForm" >
+	    <div class="form-group col-sm-7 col-sm-offset-2">
+	      <div class="input-group col-md-12">
+	        <input type="text" class="form-control input-lg" placeholder="Search by item/customer"
+	        	ng-model="search" ng-model="search" />
+	        <span class="input-group-btn">
+	          <button style="border-radius: 2px; padding: 12px" class="btn btn-info btn-lg search" type="submit">
+	            <i class="glyphicon glyphicon-search"></i>
+	          </button>
+	        </span>
+	      </div>
+	    </div>
+	  </form>
+	</div>
+	<!-- Table of item to be collected on current date -->
+	<div class="row">
+		<div class="table-responsive col-md-12 box">
+			<table class="table table-hover">
+			  <thead>
+			    <tr>
+			    	<th>No</th>
+			      <th>Customer</th>
+			      <th>Item</th>
+			      <th>Qty</th>
+			      <th>Cost</th>
+			      <th>Mobile Number</th>
+			      <th>Email</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr dir-paginate="transaction in transactionsDueToday|filter:search|itemsPerPage:4" ng-click="viewTransaction(transaction.id)">
+			      <td>{{$index + 1}}</td>
+			      <td ng-bind="(transaction.customer.firstName) + ' ' + (transaction.customer.lastName)"></td>
+			      <td ng-bind="transaction.item.name"></td>
+			      <td ng-bind="transaction.quantity"></td>
+			      <td ng-bind="transaction.item.cost"></td>
+			      <td ng-bind="transaction.customer.telephone"></td>
+			      <td ng-bind="transaction.customer.email"></td>
+			     </tr>
+			  </tbody>
+		  </table>
+	  </div>
+	  <div class="text-center">
+		  <!-- Pagination controls -->
+      <dir-pagination-controls
+         max-size="5"
+         direction-links="true"
+         boundary-links="true" >
+      </dir-pagination-controls>
+		</div>
+  </div>
+</div>

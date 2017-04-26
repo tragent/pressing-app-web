@@ -1,0 +1,60 @@
+<div class="contianer menu_view">
+	<h2 class="row">
+		<a class="btn btn-primary btn-lg manage-btn" ui-sref="manageExpenditure">Add Expenditure</a>
+	</h2>
+	<!-- success message -->
+	<div ng-show="successMessage" class="sample-show-hide alert alert-success">
+		<p class="alert-link">Expenditure has been created / update.</p>
+	</div>
+
+	<!-- search bar -->
+	<div class="row">
+	  <form name="searchForm" >
+	    <div class="form-group col-sm-7 col-sm-offset-2">
+	      <div class="input-group col-md-12">
+	        <input type="text" class="form-control input-lg" placeholder="Find expenditure by material/purchase date" ng-model="search" />
+	        <span class="input-group-btn">
+	          <button style="border-radius: 2px; padding: 12px" class="btn btn-info btn-lg" type="submit">
+	            <i class="glyphicon glyphicon-search"></i>
+	          </button>
+	        </span>
+	      </div>
+	    </div>
+	  </form>
+	</div>
+	<!-- Table of cleaning material-->
+	<div class="row">
+		<div class="table-responsive col-md-12">
+			<table class="table table-hover">
+			  <thead>
+			    <tr>
+			    	<th>No</th>
+			      <th>Material</th>
+			      <th>Quantity</th>
+			      <th>Total cost</th>
+			      <th>Purchase Date</th>
+			      <th>Expected Depreciation</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<tr dir-paginate="expenditure in expenditures|filter:search|itemsPerPage:5" ng-click="viewExpenditure(expenditure.id)">
+						<td>{{$index + 1}}</td>
+						<td ng-bind="expenditure.cleaningMaterial.name"></td>
+						<td ng-bind="expenditure.quantity"></td>
+						<td>{{ expenditure.quantity*expenditure.cleaningMaterial.cost }}</td>
+						<td>{{ stringToDate(expenditure.purchasedDate) | date : "EEEE, dd MMMM y" }}</td>
+						<td>{{ stringToDate(expenditure.depreciationDate) | date : "EEEE, dd MMMM y" }}</td>
+					</tr>
+				</tbody>
+		  </table>
+	  </div>
+	  <div class="text-center">
+		  <!-- Pagination controls -->
+      <dir-pagination-controls
+         max-size="5"
+         direction-links="true"
+         boundary-links="true" >
+      </dir-pagination-controls>
+		</div>
+  </div>
+</div>

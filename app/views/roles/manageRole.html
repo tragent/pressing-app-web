@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="menu_view manage_customer">
+		<form class="form-horizontal" role="form" ng-submit="createRole()" name="manageRoleForm" novalidate>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 col-sm-offset-2 control-label">Name</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="name" ng-class="{ submitted: submitCreateRoleForm}" class="form-control" ng-model="roleName" required ng-disabled="update">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="right col-sm-2 col-sm-offset-2">Description</label>
+				<div class="col-sm-5">
+					<textarea class="form-control" rows="3" class="form-control" ng-model="role.description"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="newPermission" class="col-sm-3 col-sm-offset-1 control-label">Add permission</label>
+				<div class="col-sm-5">
+					<select class="form-control" ng-model="newPermission" ng-options="pretty(permission.name) for permission in permissions" required>
+					</select>
+				</div>
+				<input class="btn btn-primary fa-input" type="button" value="&#xf067; " ng-click="addPermission(newPermission)">
+			</div>
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-1">
+					<legend ng-class="{ submitted: (submitCreateRoleForm) && (!permissionSet)}">Permissions</legend>
+					<ul>
+						<ol ng-repeat="permission in rolePermission">
+							<div class="row" style="margin-bottom: 20px">
+								<span class="col-sm-1">{{ $index + 1 }}.</span>
+								<span class="col-sm-8" ng-bind="pretty(permission.name)"></span>
+								<span class="delete" ng-click="removePermission(permission)">x</span>
+							</div>
+						</ol>
+					</ul>
+				</div>
+			</div>
+			<div style="position: relative; margin-left: 50%;">
+				<button ng-show="!update" style=" margin: 2%" class="btn btn-danger" type="reset">Cancel</button>
+				<button ng-show="update" style=" margin: 2%" class="btn btn-danger" ng-click="back()">Back</button>
+				<button ng-show="!update" class="btn btn-primary" type="submit">Submit</button>
+				<input ng-show="update" class="btn btn-primary" type="button" ng-click="updateRole()" value="update" />
+			</div>
+		</form>
+	</div>
+</div>

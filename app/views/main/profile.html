@@ -1,0 +1,66 @@
+<div class="container">
+	<div class="menu_view profile">
+		<!-- success message -->
+		<div ng-show="successMessage" class="sample-show-hide alert alert-success">
+			<p class="alert-link">Permission has been created / update.</p>
+		</div>
+
+		<!-- profile form -->
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="row">
+					<img class="img-circle col-sm-offset-3" height="200" width="200" src="images/profile.png">
+				</div>
+				<div class="form-group" style="margin-top: 2%">
+					<label for="username" class="col-sm-3 control-label">Username</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" id="username" ng-class="{ submitted: submitUserForm}" ng-model="user.username" disabled>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<form class="form-horizontal" role="form" ng-submit="updateProfile()" name="updateProfileForm" novalidate>
+					<div class="form-group">
+						<label for="first_name" class="col-sm-3 control-label">First Name</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="first_name" ng-class="{ submitted: submitUserForm}" ng-model="user.firstName" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="last_name" class="col-sm-3 control-label">Last Name</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="last_name" ng-class="{ submitted: submitUserForm}" ng-model="user.lastName" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-sm-3 control-label">Password</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="password" ng-class="{ submitted: submitUserForm}" ng-model="password" required>
+						</div>
+						<i data-toggle="tooltip" title="Incorrect password" ng-show="!correctPassword" class="fa fa-question-circle error" aria-hidden="true"></i>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-sm-3 control-label">New Password</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="password" ng-class="{ submitted: submitUserForm}" ng-model="newPassword" required>
+						</div>
+						<i data-toggle="tooltip" title="New password cannot be same as old password" ng-show="!validNewPassword" class="fa fa-question-circle error" aria-hidden="true"></i>
+					</div>
+					<div class="form-group">
+						<label for="telephone" class="col-sm-3 control-label">Telephone</label>
+						<div class="col-sm-6">
+							<input type="tel" class="form-control" id="telephone" ng-class="{ submitted: submitUserForm}" ng-model="user.telephone" required>
+						</div>
+					</div>
+					<div class="row">
+						<div style="position: relative; margin-left: -5%;">
+							<button style=" margin: 2%" class="btn btn-danger" ng-click="back()">Cancel</button>
+							<button class="btn btn-primary" type="submit">Update</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="menu_view manage_expenditure">
+		<form class="form-horizontal" role="form" ng-submit="createExpenditure()" name="manageExpenditureForm" novalidate>
+			<div class="form-group">
+				<label for="name" class="col-sm-3 control-label">Material</label>
+				<div class="col-sm-4">
+					<select ng-show="!update" class="form-control" ng-class="{ submitted: submitCreateExpenditureForm}" ng-model="expenditure.cleaningMaterial" ng-options="material.name for material in cleaningMaterials" required ng-disabled="update">
+					</select>
+					<input ng-show="update" type="text" class="form-control" ng-model="cleaningMaterial.name" disabled>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="quantity" class="col-sm-3 control-label">Quantity</label>
+				<div class="col-sm-4">
+					<input type="number" min="1" class="form-control" id="quantity" ng-class="{ submitted: submitCreateExpenditureForm}" class="form-control" ng-model="expenditure.quantity" ng-disabled="depreciationDate <= currentDate" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="purchase_date" class="col-sm-3 control-label">Purchase date</label>
+				<div class="col-sm-4">
+					<input type="date" class="form-control" id="purchase_date" ng-class="{ submitted: submitCreateExpenditureForm}" class="form-control" ng-model="purchasedDate" required ng-disabled="update" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="depreciationDate" class="col-sm-3 control-label">Depreciation Date</label>
+				<div class="col-sm-4">
+					<input type="date" min="{{ purchasedDate }}" class="form-control" id="depreciationDate" ng-class="{ submitted: submitCreateExpenditureForm}" class="form-control" ng-model="depreciationDate" ng-disabled="depreciationDate <= currentDate" required>
+				</div>
+			</div>
+			<div style="position: relative; margin-left: 50%;">
+				<button ng-show="!update" style=" margin: 2%" class="btn btn-danger" type="reset">Cancel</button>
+				<button ng-show="update" style=" margin: 2%" class="btn btn-danger" ng-click="back()">Back</button>
+				<button ng-show="!update" class="btn btn-primary" type="submit">Submit</button>
+				<input ng-show="update" class="btn btn-primary" type="button" value="Update" ng-click="updateExpenditure()" ng-disabled="depreciationDate <= currentDate" />
+			</div>
+		</form>
+	</div>
+</div>

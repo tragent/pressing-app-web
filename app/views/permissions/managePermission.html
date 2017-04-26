@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="menu_view manage_customer">
+		<form class="form-horizontal" role="form" ng-submit="createPermission()" name="managePermissionForm" novalidate>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 col-sm-offset-2 control-label">Name</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="name" ng-class="{ submitted: submitCreatePermissionForm}" ng-model="permissionName" required ng-disabled="update">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="right col-sm-2 col-sm-offset-2">Description</label>
+				<div class="col-sm-5">
+					<textarea class="form-control" rows="3" ng-model="permission.description" ></textarea>
+				</div>
+			</div>
+			<div style="position: relative; margin-left: 50%;">
+				<button ng-show="!update" style=" margin: 2%" class="btn btn-danger" type="reset">Cancel</button>
+				<button ng-show="update" style=" margin: 2%" class="btn btn-danger" ng-click="back()">Back</button>
+				<button ng-show="!update" class="btn btn-primary" type="submit">Submit</button>
+				<input ng-show="update" class="btn btn-primary" type="button" ng-click="updatePermission()" value="update" />
+			</div>
+		</form>
+	</div>
+</div>

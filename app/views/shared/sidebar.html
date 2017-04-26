@@ -1,0 +1,73 @@
+<!-- side bar -->
+<div class="nav-side-menu" ng-class="{ updateSideBar: toggleSideBar() }">
+  <div class="brand">
+    <span>Brand Logo<span>
+  </div>
+  <div>
+    <!-- Management -->
+    <div class="menu-list" ng-if="sideBar() != 'administration'">
+      <ul id="menu-content" class="menu-content">
+        <li ng-class="{ active: isActive('/dashboard')}">
+          <a ui-sref="dashboard">
+            <i class="fa fa-tachometer" aria-hidden="true"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li ng-class="{ active: isActive('/deposited_items')}">
+          <a ui-sref="deposited_item">
+            <i class="fa fa-archive" aria-hidden="true"></i>
+            <span>Deposited Items</span>
+          </a>
+        </li>
+        <li ng-class="{ active: isActive('/items')}">
+          <a ui-sref="item">
+            <i class="fa fa-black-tie" aria-hidden="true"></i>
+            <span>Items</span>
+          </a>
+        </li>
+        <li ng-class="{ active: isActive('/cleaning_materials')}">
+          <a ui-sref="cleaningMaterial">
+            <i class="fa fa-bitbucket" aria-hidden="true"></i>
+            <span>Cleaning Materials</span>
+          </a>
+        </li>
+        <li ng-class="{ active: isActive('/expenditures')}">
+          <a ui-sref="expenditure">
+            <i class="fa fa-money" aria-hidden="true"></i>
+            <span>Expenditures</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Administration -->
+    <div class="menu-list" ng-if="sideBar() == 'administration'">
+      <ul id="menu-content" class="menu-content">
+        <li ng-class="{ active: isActive('/users')}">
+          <a ui-sref="user">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span>Users</span>
+          </a>
+        </li>
+        <li ng-class="{ active: isActive('/customers')}">
+          <a ui-sref="customer">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span>Customers</span>
+          </a>
+        </li>
+        <li ng-class="{ active: isActive('/roles')}">
+          <a ui-sref="role">
+            <i class="fa fa-id-card" aria-hidden="true"></i>
+            <span>Roles</span>
+          </a>
+        </li>
+        <li ng-class="{ active: isActive('/permissions')}">
+          <a ui-sref="permission">
+            <i class="fa fa-address-card" aria-hidden="true"></i>
+            <span>Permissions</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

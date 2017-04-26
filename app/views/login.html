@@ -1,0 +1,35 @@
+<div class="loginForm">
+	<!-- Login form -->
+  <p class="alert alert-danger" ng-show="authenticationFailed">Invalid userame or password</p>
+	<div ng-show="load" class="loader"></div>
+	<div id="loginForm" class="">
+  <form ng-submit="login()" name="loginForm" novalidate>
+  	<div class="row">
+	    <div class="form-group col-lg-9 col-lg-offset-1">
+	      <label for="username">Username</label>
+	      <input ng-model="username" type="text" id="username" name="username" class="form-control"
+	        placeholder="Username" autofocus="true" autocomplete="off" required>
+	      <p class="error" ng-show="loginForm.username.$error.required && submitted">
+	        username required
+	      </p>
+	    </div>
+    </div>
+
+    <div class="row">
+	    <div class="form-group  col-lg-9 col-lg-offset-1">
+	      <label for="password">Password</label>
+	      <input ng-model="password" type="password" id="password" name="password" class="form-control"
+	        placeholder="Enter password" required>
+	      <p class="error" ng-show="loginForm.password.$error.required && submitted">
+	        Password required
+	      </p>
+	    </div>
+    </div>
+    <div class="row">
+	    <div class="form-group" style="float: right; margin-right: 5%;">
+	      <button type="submit" class="btn btn-primary">Log In</button>
+	    </div>
+    </div>
+  </form>
+  </div>
+</div>

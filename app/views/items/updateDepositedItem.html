@@ -1,0 +1,154 @@
+<div class="container">
+<div class="menu_view">
+	<ul id="depositTab" class="nav nav-tabs">
+		<li class="active">
+			<a data-target="#depositeItem" data-toggle="tab">Deposit Item</a>
+		</li>
+		<li ng-if="update">
+			<a data-target="#payment" data-toggle="tab">Payment</a>
+		</li>
+	</ul>
+
+	<div class="row">
+		<div id="depositTabContent" class="tab-content">
+			<div class="tab-pane fade in active" id="depositeItem">
+				<form class="form-horizontal" role="form" ng-submit="depositeItem()" name="depositeItemForm" novalidate>
+					<div class="container">
+						<div class="row">
+							<div class="form-group col-md-5 col-md-offset-1">
+								<label for="item" class="col-sm-4 control-label">Item</label>
+								<div class="col-sm-8">
+									<input ng-if="update" name="item" type="text" class="form-control" ng-model="transaction.item.name" disabled>
+									<select ng-change="updateTotalCostFromItem(transaction.item)" ng-if="!update" class="form-control" ng-model="transaction.item" ng-options="item.name for item in items" required></select>
+								</div>
+							</div>
+							<div class="form-group col-md-5 col-md-offset-1" >
+								<label for="status" class="col-sm-4 control-label">Status</label>
+								<div class="col-sm-8">
+									<select class="form-control" ng-class="{ submitted: submitDepositItemForm}" ng-model="transaction.status" required="">
+										<option>PENDING</option>
+										<option>WASHING</option>
+										<option>READY_AND_NOT_PAID</option>
+										<option>READY_AND_PAID</option>
+										<option>COLLECTED</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-sm-5  col-md-offset-1">
+								<label for="customer" class="col-sm-4 control-label">Customer</label>
+								<div class="col-sm-8">
+									<input ng-if="update" name="item" type="text" class="form-control" ng-model="customerName" disabled>
+									<select ng-if="!update" class="form-control" ng-model="transaction.customer" ng-options="customer.firstName+' '+customer.lastName for customer in customers" required>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-md-5 col-md-offset-1">
+								<label for="label" class="col-sm-4 control-label">Label</label>
+								<div class="col-sm-8">
+									<input name="label" ng-class="{ submitted: submitDepositItemForm}" type="text" class="form-control" ng-model="transaction.label" required ng-disabled="update">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-5 col-md-offset-1">
+								<label for="deposit_date" class="col-sm-4 control-label">Deposit Date</label>
+								<div class="col-sm-8">
+									<input min="{{ today }}" ng-show="!update" type="date" ng-class="{ submitted: submitDepositItemForm}" class="form-control" id="deposit_date" ng-model="depositDate" required>
+									<input ng-show="update" type="date" class="form-control" id="deposit_date" ng-model="itemDepositDate" disabled>
+								</div>
+							</div>
+							<div class="form-group col-md-5 col-md-offset-1">
+								<label for="cost" class="col-sm-4 control-label">Cost</label>
+								<div class="col-sm-8">
+									<input type="number" class="form-control" id="cost" ng-value="transaction.item.cost" disabled>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-5 col-md-offset-1">
+								<label for="due_date" class="col-sm-4 control-label">Due Date</label>
+								<div class="col-sm-8">
+									<input min="{{ depositDate }}" ng-show="!update" type="date" ng-class="{ submitted: submitDepositItemForm}" class="form-control" id="due_date" ng-model="dueDate" required>
+									<input ng-show="update" type="date" ng-class="{ submitted: submitDepositItemForm}" class="form-control" id="due_date" ng-model="itemDueDate" required disabled>
+								</div>
+							</div>
+							<div class="form-group col-md-5 col-md-offset-1">
+								<label for="cost" class="col-sm-4 control-label">Total</label>
+								<div class="col-sm-8">
+									<input type="number" class="form-control" id="cost" ng-model="totalCost" disabled>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-5 col-md-offset-1">
+								<label for="quantity" class="col-sm-4 control-label">Quantity</label>
+								<div class="col-sm-8">
+									<input type="number" ng-change="updateTotalCostFromQty(transaction.quantity)" ng-class="{ submitted: submitDepositItemForm}" min="1" class="form-control" id="quantity" ng-model="transaction.quantity" required ng-disabled="update">
+								</div>
+							</div>
+							<div class="form-group col-md-5 col-md-offset-1">
+								<label for="amountPaid" class="col-sm-4 control-label">Amount paid</label>
+								<div class="col-sm-8">
+									<input type="number" ng-model="amountPaid" class="form-control" id="amountPaid" disabled>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-5 col-md-offset-1">
+								<label for="payments" class="col-sm-4 control-label">Number of Payments</label>
+								<div class="col-sm-8">
+									<input type="number" ng-model="numberOfPayments" class="form-control" id="payments" disabled>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="position: relative; margin-left: 40%;">
+						<button ng-if="!update" style=" margin: 2%" class="btn btn-danger" type="reset">Cancel</button>
+						<button ng-if="update" style=" margin: 2%" class="btn btn-danger" ng-click="back()">Back</button>
+						<button ng-if="!update" class="btn btn-primary" type="submit">Deposit item</button>
+						<input ng-if="update" class="btn btn-primary" type="button" value="Update item Status" ng-click="updateTransactionStatus()">
+					</div>
+				</form>
+			</div>
+			<div class="tab-pane fade" id="payment">
+				<form class="form-horizontal" role="form" ng-submit="makePayment()" name="makePaymentForm" novalidate>
+						<div class="row">
+							<div class="form-group col-md-5 col-md-offset-1" >
+								<label for="payment_method" class="col-sm-4 control-label">Payment method</label>
+								<div class="col-sm-8">
+									<select class="form-control" ng-model="payment.paymentMethod" ng-options="paymentMethod.name for paymentMethod in paymentMethods" required></select>
+								</div>
+							</div>
+							<div class="form-group col-md-5">
+								<label for="payment_date" class="col-sm-4 control-label">Payment Date</label>
+								<div class="col-sm-8">
+									<input type="date" ng-class="{ submitted: submitMakePaymentForm}" ng-model="payment.paymentDate" class="form-control" id="payment_date" required>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-5 col-md-offset-5">
+								<label for="payments" class="col-sm-4 control-label">Amount</label>
+								<div class="col-sm-8">
+									<input min="1" ng-max="amountPending" type="number" ng-class="{ submitted: submitMakePaymentForm}" ng-model="payment.amount"  class="form-control" id="payments" required>
+								</div>
+							</div>
+							<div class="form-group col-md-5">
+								<label for="payment_date" class="col-sm-4 control-label">Amount pending</label>
+								<div class="col-sm-8">
+									<input type="number" ng-model="amountPending" class="form-control" disabled>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button style="position: relative; margin-left: 60%" class="btn btn-primary" type="submit">Make Payment</button>
+						</div>
+						<hr>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
