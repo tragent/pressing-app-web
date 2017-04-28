@@ -41,14 +41,14 @@ angular.module('pressingUiApp')
           }
         }
 
-        /* Arrange array for transactions for repeated customers */
+        /* Arrange array for transactions for repeated items */
         for (var i = 0; i < $scope.transactions.length; i++) {
           if(typeof $scope.transactions[i].item == "object"){
             items.push($scope.transactions[i].item);
 
           } else if(typeof $scope.transactions[i].item == "number") {
             for (var j = 0; j < items.length; j++) {
-              if(customers[j].id == $scope.transactions[i].item) {
+              if(items[j].id == $scope.transactions[i].item) {
                 $scope.transactions[i].item = items[j];
                 break;
               }

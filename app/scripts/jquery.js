@@ -1,3 +1,5 @@
+'use strict';
+
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	$('#tab a').click(function(e){

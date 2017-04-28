@@ -4,7 +4,7 @@
 		<h3 class="alert-link">Transactions past due date</h3>
 	</div>
 	<div class="row">
-		<div class="table-responsive col-md-10 col-md-offset-1 box">
+		<div class="table-responsive col-md-12">
 			<table class="table table-hover">
 			  <thead>
 			    <tr>
@@ -12,7 +12,7 @@
 			      <th>Customer</th>
 			      <th>Item</th>
 			      <th>Due Date</th>
-			      <th>Pending</th>
+			      <th>Quantity</th>
 			      <th>Cost</th>
 			      <th>Telephone</th>
 			      <th>Status</th>
@@ -24,7 +24,7 @@
 				    <td ng-bind="(transaction.customer.firstName) + ' ' + (transaction.customer.lastName)"></td>
 				    <td ng-bind="transaction.item.name" ></td>
 				    <td>{{stringToDate(transaction.dueDate) | date : "dd-MM-y" }}</td>
-				    <td>{{ transaction.quantity }}</td>
+				    <td ng-bind="transaction.quantity"></td>
 				    <td ng-bind="transaction.item.cost"></td>
 				    <td ng-bind="transaction.customer.telephone"></td>
 				    <td ng-bind="transaction.status"></td>

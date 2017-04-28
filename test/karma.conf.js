@@ -30,7 +30,7 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-touch/angular-touch.js',
       'app/bower_components/angular-ui-router/release/angular-ui-router.js',
-      'app/bower_components/angularUtils-pagination/dirPagination.js',
+      'app/bower_components/angular-utils-pagination/dirPagination.js',
       'app/bower_components/d3/d3.js',
       'app/bower_components/c3/c3.js',
       'app/bower_components/c3-angular/c3-angular.min.js',
