@@ -1,3 +1,12 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name pressingUiApp.controller:hasRole
+ * @description
+ * # hasRole
+ * Controller of the pressingUiApp
+ */
 angular.module('pressingUiApp')
   .directive('hasRole', [ 'Role', function (Role) {
     return {
