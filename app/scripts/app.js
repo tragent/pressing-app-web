@@ -172,7 +172,25 @@ angular
       });
       $urlRouterProvider.otherwise('/login');
   }])
-  .run(function($rootScope, $location, $cookieStore, $http){
+  .run(function($rootScope, $location, $cookieStore, $http, $state){
+
+    /*redirection*/
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState){
+
+      if ($cookieStore.get('userData') && toState.name === "login" ) {
+        event.preventDefault();
+        $state.go(fromState.name);
+
+      } else if(toState.name === "login") {
+        return;
+
+      } else if (!$cookieStore.get('userData')) {
+        event.preventDefault();
+        $state.go('login');
+        return
+      }
+    });
+
     $rootScope.location = $location;
 
     /*Toggling side bar*/
@@ -187,13 +205,6 @@ angular
         return true;
       }
       return false;
-    };
-
-    /*Logout*/
-    $rootScope.logout = function(){
-      $cookieStore.remove('userData');
-      $cookieStore.remove('notification');
-      $location.path('/login');
     };
 
     /* Determine which menu to display on side nav*/
