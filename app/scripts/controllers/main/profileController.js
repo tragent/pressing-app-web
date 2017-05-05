@@ -12,7 +12,7 @@ angular.module('pressingUiApp')
     function ($scope, $timeout, $cookieStore, UserService, $location, $window) {
     $scope.currentDate = new Date();
     var userData = $cookieStore.get('userData');
-    $scope.user = userData.user;
+    $scope.user = userData;
     $scope.submitUserForm = false;
     $scope.correctPassword = true;
     $scope.validNewPassword = true;
@@ -58,8 +58,9 @@ angular.module('pressingUiApp')
 
         UserService.updateUser(loggedInUser.id, loggedInUser,
           function(){
-            console.log("Profile updated, Navigating to login");
             $scope.successMessage = true;
+            $cookieStore.remove('userData');
+            $cookieStore.remove('notification');
             $timeout(
               function () {
                 $scope.successMessage = false;

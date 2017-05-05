@@ -26,8 +26,8 @@ angular.module('pressingUiApp')
   					/* Successful login */
   					function (data){
               var roles = [];
-              for(var i=0; i<data.user.roles.length; i++){
-                roles[i] = data.user.roles[i].name;
+              for(var i=0; i<data.roles.length; i++){
+                roles[i] = data.roles[i].name;
               }
               Role.setRoles(roles);
   						$location.path('/dashboard');

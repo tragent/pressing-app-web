@@ -23,7 +23,10 @@ angular.module('pressingUiApp')
 
       $http.get( URL, config)
         .then(function(response) {
-          $cookieStore.put('userData', response.data);
+          var loggedInUser = response.data;
+          loggedInUser.token = base64ClientCredentials;
+          loggedInUser.password = loginCredentials.password;
+          $cookieStore.put('userData', loggedInUser);
           onSuccess(response.data);
         }, function(response) {
           onError(response);
@@ -32,6 +35,7 @@ angular.module('pressingUiApp')
 
     var logout = function (){
       $cookieStore.remove('userData');
+      $cookieStore.remove('notification');
     };
 
     /* Base64 encode and decode */
